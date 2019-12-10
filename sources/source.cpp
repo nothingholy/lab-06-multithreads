@@ -1,3 +1,5 @@
+// Copyright 2019 nothingholy pershaevnikita@yandex.ru
+
 #include <boost/lexical_cast.hpp>
 #include <boost/log/expressions.hpp>
 #include <boost/log/sinks.hpp>
@@ -10,13 +12,13 @@
 #include <string>
 #include <thread>
 #include <vector>
-using namespace std;
+
 
 void PluckHash(size_t threadAmount) {
   size_t i = 0;
   while (i < 1024 * 1024 / threadAmount) {
-    string newString = to_string(rand());
-    string hash = picosha2::hash256_hex_string(newString);
+    std::string newString = std::to_string(rand());
+    std::string hash = picosha2::hash256_hex_string(newString);
 
     if (hash.substr(hash.size() - 4) == "0000")
       BOOST_LOG_TRIVIAL(info) << "0000 found in hash '" << hash
@@ -47,7 +49,7 @@ void log_setup() {
 
   auto ConsoleLog = boost::log::add_console_log(
       // console output
-      cout,
+      std::cout,
       // format
       boost::log::keywords::format =
           "[%TimeStamp%][%Severity%][%ThreadID%]: %Message%");
@@ -72,7 +74,7 @@ int main(int argc, char *argv[]) {
 
   BOOST_LOG_TRIVIAL(trace) << "Number of threads: " << threadAmount;
 
-  vector<boost::thread> threads;
+  std::vector<boost::thread> threads;
   threads.reserve(threadAmount);
   for (size_t i = 0; i < threadAmount; i++)
     threads.emplace_back(PluckHash, threadAmount);
