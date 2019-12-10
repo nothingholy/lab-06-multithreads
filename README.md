@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/nothingholy/lab-06-multithreads.svg?branch=master)](https://travis-ci.com/nothingholy/lab-06-multithreads) [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com) ![nothingholy](https://img.shields.io/badge/nothing-holy-red)
+
+
 # Лабораторная работа №6
 
 ## Задание
